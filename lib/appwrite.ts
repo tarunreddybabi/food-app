@@ -7,11 +7,11 @@ export const appwriteConfig = {
     platform: "com.foodapp",
     databaseId: '686dff900022bfb95b1f',
     bucketId: '68643e170015edaa95d7',
-    userCollectionId: '68629b0a003d27acb18f',
-    categoriesCollectionId: '68643a390017b239fa0f',
-    menuCollectionId: '68643ad80027ddb96920',
-    customizationsCollectionId: '68643c0300297e5abc95',
-    menuCustomizationsCollectionId: '68643cd8003580ecdd8f'
+    userCollectionId: '686dffad000436a1a92c',
+    categoriesCollectionId: '686e0a9200346c36a9ca',
+    menuCollectionId: '686e0aa100126a0b362c',
+    customizationsCollectionId: '686e0ab2002e59573ec9',
+    menuCustomizationsCollectionId: '686e0abf0036ec75e666'
 }
 
 // export const client = new Client();
