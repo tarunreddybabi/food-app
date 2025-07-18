@@ -1,22 +1,31 @@
 import { SplashScreen, Stack } from "expo-router";
-import {useFonts} from 'expo-font'
+import { useFonts } from "expo-font";
 import { useEffect } from "react";
 
-import "./global.css"
+import "./global.css";
+import useAuthStore from "@/store/auth.store";
 
 export default function RootLayout() {
-  const [fontsLoaded,error]=useFonts({
-    "QuickSand-Bold":require('../assets/fonts/Quicksand-Bold.ttf'),
-    "QuickSand-Medium":require('../assets/fonts/Quicksand-Medium.ttf'),
-    "QuickSand-Regular":require('../assets/fonts/Quicksand-Regular.ttf'),
-    "QuickSand-SemiBold":require('../assets/fonts/Quicksand-SemiBold.ttf'),
-    "QuickSand-Light":require('../assets/fonts/Quicksand-Light.ttf')
-  })
+  const { isLoading, fetchAuthenticatedUser } = useAuthStore();
+
+  const [fontsLoaded, error] = useFonts({
+    "QuickSand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
+    "QuickSand-Medium": require("../assets/fonts/Quicksand-Medium.ttf"),
+    "QuickSand-Regular": require("../assets/fonts/Quicksand-Regular.ttf"),
+    "QuickSand-SemiBold": require("../assets/fonts/Quicksand-SemiBold.ttf"),
+    "QuickSand-Light": require("../assets/fonts/Quicksand-Light.ttf"),
+  });
+
+  useEffect(() => {
+    if (error) throw Error;
+    if (fontsLoaded) SplashScreen.hideAsync();
+  }, [fontsLoaded, error]);
 
   useEffect(()=>{
-    if(error) throw Error;
-    if(fontsLoaded) SplashScreen.hideAsync()
-  },[fontsLoaded,error]);
 
-  return <Stack screenOptions={{headerShown:false}}/>;
+    fetchAuthenticatedUser()
+  },[])
+  if(!fontsLoaded||isLoading)return null
+
+  return <Stack screenOptions={{ headerShown: false }} />;
 }
